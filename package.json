@@ -1,0 +1,31 @@
+{
+  "name": "student-portal-authentication-service",
+  "version": "1.0.0",
+  "description": "Authentication service for Student Portal",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js | bunyan"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TyagiDemon/Student-Portal-Authentication-Service.git"
+  },
+  "author": "Karan Tyagi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TyagiDemon/Student-Portal-Authentication-Service/issues"
+  },
+  "homepage": "https://github.com/TyagiDemon/Student-Portal-Authentication-Service#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
+    "bunyan": "^1.8.15",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jackrabbit": "^4.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.6"
+  }
+}

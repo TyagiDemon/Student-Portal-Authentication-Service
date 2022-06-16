@@ -20,32 +20,34 @@ const log = config.log();
 app.get("/", async (req, res) => {
 	try {
 		res.send("Auth service running");
-	}
-	catch (err) {
+	} catch (err) {
 		res.status(500).json({ message: err.message });
 	}
-})
+});
 
 app.use(routes);
 
 const server = app.listen(process.env.PORT || 4000);
 
 server.on("listening", () => {
-  log.info(`Hi there! I'm listening on port ${server.address().port}`);
-  
-  mongoose.connect(process.env.MONGO_URL, ()=>{log.info("Connected to MongoDB")});
+	log.info(`Hi there! I'm listening on port ${server.address().port}`);
+
+	mongoose.connect(process.env.MONGO_URL, () => {
+		log.info("Connected to MongoDB");
+	});
 
 	const registerService = () =>
 		axios
 			.put(
-				`https://student-portal-serviceregistry.herokuapp.com/register/${
+				`https://student-portal-serviceregistry.herokuapp.com//register/${
 					config.name
-				}/${config.version}/${server.address().port}`
+				}/${config.version}/${server.address().port}`,
+				{ url: process.env.ROOT_URL || "http://localhost:4000" }
 			)
 			.then((res) => log.debug(res.data));
-	const unregisterService = () =>
-		axios.delete(
-			`https://student-portal-serviceregistry.herokuapp.com/register/${
+	const unregisterService = async () =>
+		await axios.delete(
+			`https://student-portal-serviceregistry.herokuapp.com//register/${
 				config.name
 			}/${config.version}/${server.address().port}`
 		);
